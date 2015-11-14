@@ -1,0 +1,19 @@
+body {
+  text-align: center;
+}
+
+div.holder{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.itemForm{
+  border: 1px solid red;
+}
+
+.noRoom {
+  margin: auto;
+  height:200px;
+  width:50%;
+  box-shadow: 3px 3px 6px red;
+}

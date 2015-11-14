@@ -7,7 +7,7 @@ let Room;
 
 let roomSchema = Schema({
   name: { type: String, required: true },
-  createdAt: { type: Date, required: true, default: new Date() },
+  createdAt: { type: Date, required: true },
   items: [{ type: Schema.Types.ObjectId, ref: 'Item' }]
  });
 

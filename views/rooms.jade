@@ -1,0 +1,48 @@
+doctype html
+html(lang="en")
+  head
+    title Home
+    link(href="bower_components/bootstrap/dist/css/bootstrap.min.css", rel='stylesheet')
+    link(href="bower_components/font-awesome/css/font-awesome.min.css", rel='stylesheet')
+    link(href="bower_components/bootswatch/cosmo/bootstrap.min.css", rel='stylesheet')
+    link(href="style.css", rel='stylesheet')
+  
+  body
+    div.container
+    h1= title
+    form.room
+      input(type='text', id='roomInp' name='roomInp', placeholder='New Room:')
+      br
+      input(type="submit" id='submit')
+    form.item
+      input(type='text', id='itemInp' name='itemInp', placeholder='New Item:')
+      form.itemOptions
+        div.holder.hidden
+          textarea(id='valueInp' name='valueInp', placeholder='Item Value (required):', cols="40", rows="1",)
+          br
+          textarea(name="room", id="itemRoom", cols="40", rows="1", placeholder="Room: (must be listed) --- (optional)")
+          br
+          textarea(id='itemDesc' name='itemDesc', placeholder='Item Description (optional):', cols="40", rows="3",)
+          br
+          input(type="submit" id='itemSubmit')
+          input(type="submit" id='hide' value='hide')
+    
+    table.table.table-bordered.table-striped
+      thead
+        tr
+          th Room
+          th Date Added
+          th Edit
+          th Delete
+          tbody
+          each element in roomsList
+             tr(id=element._id)
+               td.name= element.name
+               td.createdAt= element.createdAt
+               td.edit
+                   a(href='/rooms/'+element._id) 
+                    i.fa.fa-pencil-square-o.fa-lg
+               td.delete
+                  i.fa.fa-trash-o.fa-lg
+  script(src='bower_components/jquery/dist/jquery.min.js')
+  script(src='main.js')

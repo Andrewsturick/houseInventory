@@ -5,17 +5,24 @@ let router = express.Router();
 
 let Item = require('../models/item');
 
+
 router.get('/', (req, res) => {
   Item.find({}, function(err, items){
-    res.status(err ? 400 : 200).send(err || items);
-  }).populate('items');
+    res.render('items', {title: 'Items List', itemsList: items});
 });
+})
 
 // .populate()
 // .sort()
 // .limit()
 // .select()
 // .where()
+
+router.get('/itemsList', function(req, res){
+    Item.find({}, function(err, items){
+      res.send(items);
+    })
+})
 
 
 router.get('/:id', (req, res) => {

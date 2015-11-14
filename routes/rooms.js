@@ -7,16 +7,27 @@ let Room = require('../models/room');
 let Item = require('../models/item');
 
 router.get('/', (req, res) => {
-
+  Room.find({}, function(err, rooms){
+      rooms.reverse();
+      res.render('rooms', {title: 'Rooms List', roomsList: rooms});
+  })
   // Room.find({}).populate('items').exec(function(err, rooms){
   //   res.status(err ? 400 : 200).send(err || rooms);
-  // });
-
-  Room.find({}, function(err, rooms){
-    res.status(err ? 400 : 200).send(err || rooms);
-  }).populate('items');
-
+  // })
 });
+
+router.get('/roomsList', function(req, res){
+    Room.find({}, function(err, rooms){
+      res.send(rooms);
+    })
+})
+
+
+router.delete('/', function(req, res){
+  Room.remove(req.body, function(err){
+    res.send()
+  })
+})
 
 
 router.put('/:roomId/addItem/:itemId', function(req, res) {
@@ -37,8 +48,17 @@ router.put('/:roomId/addItem/:itemId', function(req, res) {
 
 router.get('/:id', (req, res) => {
   Room.findById(req.params.id, function(err, room){
-    res.status(err ? 400 : 200).send(err ? 'room not found' : room);
+
+
+
+    for(var i=0; i<room.items.length; i++){
+      Item.findById(room.items[i], function(err, item){
+        console.log(item);
+      })}
   });
+
+  res.render('roomListing');
+
 });
 
 router.put('/:id', (req, res) => {

@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+  head
+    title Home
+    link(href="bower_components/bootstrap/dist/css/bootstrap.min.css", rel='stylesheet')
+    link(href="bower_components/font-awesome/css/font-awesome.min.css", rel='stylesheet')
+    link(href="bower_components/bootswatch/cosmo/bootstrap.min.css", rel='stylesheet')
+    link(href="style.css", rel='stylesheet')
+  body
+  
+
+    div.container
+    h1= title
+        
+    div.noRoom
+      
+    table.table.table-bordered.table-striped
+      thead
+        tr
+          th Item
+          th Date Added
+          th Edit
+          th Delete
+          tbody
+          each element in roomName
+             tr(id=element._id)
+               td.name= element.name
+               td.createdAt= element.createdAt
+               td.edit
+                   a(href='/rooms/'+element._id) 
+                    i.fa.fa-pencil-square-o.fa-lg
+               td.delete
+                  i.fa.fa-trash-o.fa-lg
+
+
+    script(src='bower_components/jquery/dist/jquery.min.js')
+    script(src='main.js')
